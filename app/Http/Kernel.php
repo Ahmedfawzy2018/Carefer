@@ -63,5 +63,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'check.bus.availability' => \App\Http\Middleware\CheckBusAvailability::class,
+        'check.reservation.time.limit' => \App\Http\Middleware\CheckReservationTimeLimit::class,
     ];
 }

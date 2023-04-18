@@ -14,7 +14,11 @@ class CreateBusesTable extends Migration
     public function up()
     {
         Schema::create('buses', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->integer('capacity')->default(1);
+            $table->enum('type', ['short', 'long'])->default('long');
+            $table->enum('statue', ['open', 'closed'])->default('open');
             $table->timestamps();
             $table->softDeletes();
         });

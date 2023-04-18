@@ -14,7 +14,11 @@ class CreateSeatsTable extends Migration
     public function up()
     {
         Schema::create('seats', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('bus_id');
+            $table->foreign('bus_id')->references('id')->on('buses');
+            $table->string('seat_number');
+            $table->enum('status', ['available', 'busy'])->default('available');
             $table->timestamps();
             $table->softDeletes();
         });
