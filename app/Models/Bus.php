@@ -11,10 +11,10 @@ class Bus extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = "buses";
-    protected $fillable = ['name', 'capacity', 'type', 'status'];
+    protected $fillable = ['name', 'capacity', 'seat_price', 'type', 'status'];
 
     public function seats()
     {
-        return $this->hasMany(Seat::class, 'bus_id') ;
+        return $this->hasMany(Seat::class) ;
     }
 }

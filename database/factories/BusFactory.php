@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\BusTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class BusFactory extends Factory
 {
@@ -16,9 +15,9 @@ class BusFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->words(5, true),
             'capacity' => 20,
-            'type' => 'long',
+            'type' => BusTypeEnum::LONG_ROUTE,
         ];
     }
 }

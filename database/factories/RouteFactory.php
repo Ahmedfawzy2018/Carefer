@@ -16,9 +16,6 @@ class RouteFactory extends Factory
     public function definition()
     {
         return [
-            'pickup_station' => $this->faker->name,
-            'destination_station' => 20,
-            'distance' => 'long',
         ];
     }
 }

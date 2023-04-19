@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Services\BusService;
 use Illuminate\Http\Request;
 
 class BusController extends Controller
@@ -12,9 +13,9 @@ class BusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, BusService $busService)
     {
-        //
+        return $busService->list($request);
     }
 
     /**
@@ -44,9 +45,9 @@ class BusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, BusService $busService)
     {
-        //
+        return $busService->show($id);
     }
 
     /**
@@ -82,4 +83,5 @@ class BusController extends Controller
     {
         //
     }
+
 }

@@ -3,18 +3,26 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReserveBusRequest;
+use App\Services\ReservationService;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['check.bus.availability', 'check.reservation.time.limit'])->only('store');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, ReservationService $reservationService)
     {
-        //
+        return $reservationService->list($request);
     }
 
     /**
@@ -33,9 +41,9 @@ class ReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReserveBusRequest $request, ReservationService $reservationService)
     {
-        //
+        return $reservationService->reserve($request);
     }
 
     /**
@@ -44,9 +52,9 @@ class ReservationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, ReservationService $reservationService)
     {
-        //
+        return $reservationService->show($id);
     }
 
     /**

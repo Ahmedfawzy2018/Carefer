@@ -19,6 +19,7 @@ class CreateRoutesTable extends Migration
             $table->string('destination_station');
             $table->string('distance');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

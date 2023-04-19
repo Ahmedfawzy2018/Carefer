@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ReservationStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,27 @@ class Reservation extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = "reservations";
-    protected $fillable = ['user_id', 'bus_id', 'route_id', 'total', 'discount', 'email', 'status'];
+
+    const RESERVED = 1;
+    const CANCELLED = 2;
+
+    CONST STATUS_MAPPING = [
+        1 => ReservationStatusEnum::RESERVED,
+        2 => ReservationStatusEnum::CANCELLED,
+    ];
+    protected $fillable = [
+        'user_id',
+        'bus_id',
+        'route_id',
+        'seats_count',
+        'seats_price',
+        'total',
+        'discount',
+        'email',
+        'status',
+        'reservation_date',
+        'cancelled_date',
+    ];
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id') ;

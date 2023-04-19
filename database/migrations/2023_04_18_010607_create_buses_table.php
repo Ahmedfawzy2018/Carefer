@@ -17,8 +17,9 @@ class CreateBusesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('capacity')->default(1);
+            $table->decimal('seat_price')->default(10);
             $table->enum('type', ['short', 'long'])->default('long');
-            $table->enum('statue', ['open', 'closed'])->default('open');
+            $table->enum('status', ['open', 'closed'])->default('open');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -25,11 +25,17 @@ class CreateReservationsTable extends Migration
             $table->unsignedBigInteger('route_id');
             $table->foreign('route_id')->references('id')->on('routes');
 
+            $table->integer('seats_count');
+            $table->decimal('seats_price');
+
             $table->decimal('total')->default(0);
             $table->decimal('discount')->default(0);
 
             $table->string('email');
-            $table->enum('status', ['reserved', 'new'])->default('reserved') ;
+            $table->enum('status', ['1', '2'])->default('1') ;
+
+            $table->date('reservation_date');
+            $table->dateTime('cancelled_date')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

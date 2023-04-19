@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidateLoginRequest extends FormRequest
+class ReserveBusRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,10 @@ class ValidateLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required|string',
+            'bus_id' => 'required|exists:buses,id',
+            'route_id' => 'required|exists:routes,id',
+            'seats' => 'required|array|min:1',
+            'seats.*' => 'required|exists:seats,id',
         ];
     }
 }

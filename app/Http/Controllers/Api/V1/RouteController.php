@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Services\RouteService;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -12,9 +13,9 @@ class RouteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, RouteService $routeService)
     {
-        //
+        return $routeService->list($request);
     }
 
     /**

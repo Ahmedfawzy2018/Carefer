@@ -8,20 +8,9 @@ use App\Http\Requests\ValidateLoginRequest;
 use App\Services\AuthenticationService;
 class AuthenticationController extends Controller
 {
-    protected $service;
-
-    public function __construct(AuthenticationService $authService) {
-        $this->service = $authService;
-    }
-
-    public function store(RegisterUserRequest $request)
+    public function login(ValidateLoginRequest $request, AuthenticationService $authService)
     {
-        return $this->service->store($request);
-    }
-
-    public function login(ValidateLoginRequest $request)
-    {
-        return $this->service->login($request->validated());
+        return $authService->login($request->validated());
     }
 
 }

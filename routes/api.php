@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\V1\MovieController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\AuthenticationController;
+use App\Http\Controllers\Api\V1\{AuthenticationController, BusController, ReservationController, RouteController};
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +15,13 @@ use App\Http\Controllers\Api\V1\AuthenticationController;
 */
 
 Route::group(['prefix' => 'user'], function() {
-    Route::post('register', [AuthenticationController::class, 'store']);
     Route::post('login', [AuthenticationController::class, 'login']);
-    Route::group(['middleware' => 'auth'], function() {
+});
 
-    });
+Route::group(['middleware' => 'auth'], function() {
+    Route::apiResource('reservations', ReservationController::class);
+    Route::apiResource('buses', BusController::class) ;
+    Route::apiResource('routes', RouteController::class) ;
 });
 
 

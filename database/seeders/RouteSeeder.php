@@ -14,6 +14,16 @@ class RouteSeeder extends Seeder
      */
     public function run()
     {
-        Route::factory()->count(1)->create();
+        Route::factory()->create([
+            'pickup_station' => 'Cairo',
+            'destination_station' => 'Alexandria',
+            'distance' => 90,
+        ]);
+
+        Route::factory()->create([
+            'pickup_station' => 'Cairo',
+            'destination_station' => 'Aswan',
+            'distance' => 150,
+        ]);
     }
 }
