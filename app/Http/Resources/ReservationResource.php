@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Enums\ReservationStatusEnum;
 use App\Models\Reservation;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -29,6 +28,7 @@ class ReservationResource extends JsonResource
             'reservation_date' => $this->reservation_date,
             'cancelled_date' => $this->cancelled_date,
             'status' => Reservation::STATUS_MAPPING[$this->status],
+            'seats' => ReservationDetailsResource::collection($this->details),
         ];
     }
 }

@@ -45,4 +45,14 @@ class Reservation extends Model
     public function route() {
         return $this->belongsTo(Route::class, 'route_id') ;
     }
+
+    public function details() {
+        return $this->hasMany(ReservationDetails::class, "reservation_id");
+    }
+
+    public function scopeFilter($query, $request)
+    {
+        // If we need to Add some filter for reservations (user, bus , route, etc)
+        return $query;
+    }
 }

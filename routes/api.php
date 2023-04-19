@@ -19,9 +19,12 @@ Route::group(['prefix' => 'user'], function() {
 });
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::get('most-frequent-trip', [ReservationController::class, 'mostFrequentTrip']);
+
     Route::apiResource('reservations', ReservationController::class);
     Route::apiResource('buses', BusController::class) ;
     Route::apiResource('routes', RouteController::class) ;
+
 });
 
 
