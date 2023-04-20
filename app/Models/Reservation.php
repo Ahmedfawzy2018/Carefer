@@ -52,6 +52,7 @@ class Reservation extends Model
 
     public function scopeFilter($query, $request)
     {
+        $query = $query->where('user_id', auth()->user()->id);
         // If we need to Add some filter for reservations (user, bus , route, etc)
         return $query;
     }

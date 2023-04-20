@@ -12,23 +12,55 @@ use App\Services\AuthenticationService;
 use App\Services\MovieServie;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class TaskTest extends TestCase
 {
     use WithFaker;
-    public function test_should_register_new_user_successfully()
-    {
-        $request = new RegisterUserRequest([
-            'name' => $this->faker->name,
-            'email' => $this->faker->email,
-            'password' => 'password',
-        ]);
 
-        $response = (new AuthenticationService())
-            ->store($request);
-        $this->assertEquals($response->status(), 200);
+    protected $user;
+    public function test_should_user_can_login_successfully()
+    {
+        $user  = newUser();
+
+        $this->postJson(route("user.login"), [
+            'email' => $user->email,
+            'password' => 'password',
+        ])->assertStatus(Response::HTTP_OK)
+            ->assertJsonStructure(["data" => ['token']]);
     }
+
+    public function test_should_get_buses_successfully()
+    {
+        $this->user  = newUser();
+        seedBus();
+        $this->actingAs($this->user)
+            ->getJson(route("buses.index"))
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonStructure(["data" => ['records']]);
+    }
+
+    public function test_should_get_routes_successfully()
+    {
+        $this->user  = newUser();
+        seedRoute();
+        $this->actingAs($this->user)
+            ->getJson(route("routes.index"))
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonStructure(["data" => ['records']]);
+    }
+
+    public function test_should_get_reservations_successfully()
+    {
+        $this->user  = newUser();
+
+        $this->actingAs($this->user)
+            ->getJson(route("reservations.index"))
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonStructure(["data" => ['records']]);
+    }
+
 
 
 }

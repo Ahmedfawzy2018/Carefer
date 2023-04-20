@@ -15,7 +15,7 @@ use App\Http\Controllers\Api\V1\{AuthenticationController, BusController, Reserv
 */
 
 Route::group(['prefix' => 'user'], function() {
-    Route::post('login', [AuthenticationController::class, 'login']);
+    Route::post('login', [AuthenticationController::class, 'login'])->name('user.login');
 });
 
 Route::group(['middleware' => 'auth'], function() {
