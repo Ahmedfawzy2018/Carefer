@@ -28,6 +28,10 @@ class updateReservationAction
             $seats = $this->reservation->details()->pluck('seat_id')->toArray();
         }
 
+        if($this->request['status'] == Reservation::COMPLETED) {
+            $seats = $this->reservation->details()->pluck('seat_id')->toArray();
+        }
+
         $this->reservation->update($this->request);
 
         Seat::whereIn('id', $seats)->update(['status' => SeatStatusEnum::AVAILABLE]);

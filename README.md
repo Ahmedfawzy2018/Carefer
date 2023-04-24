@@ -60,7 +60,7 @@ GET /api/most-frequent-trip
 
 ## Documentation
  - POSTMAN COLLECTION is included in the project.
- - Also API controller function has documentation in case you can Use mpociot/documentarian
+ - Also written documentation is auto generated in the path : http://127.0.0.1:8000/docs/
 
 ## TESTING
     - php artisan test

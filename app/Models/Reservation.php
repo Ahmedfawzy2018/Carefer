@@ -15,10 +15,12 @@ class Reservation extends Model
 
     const RESERVED = 1;
     const CANCELLED = 2;
+    const COMPLETED = 3;
 
     CONST STATUS_MAPPING = [
         1 => ReservationStatusEnum::RESERVED,
         2 => ReservationStatusEnum::CANCELLED,
+        3 => ReservationStatusEnum::COMPLETED,
     ];
     protected $fillable = [
         'user_id',

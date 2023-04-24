@@ -32,7 +32,7 @@ class CreateReservationsTable extends Migration
             $table->decimal('discount')->default(0);
 
             $table->string('email');
-            $table->enum('status', ['1', '2'])->default('1') ;
+            $table->enum('status', ['1', '2', '3'])->default('1') ;
 
             $table->date('reservation_date');
             $table->dateTime('cancelled_date')->nullable();

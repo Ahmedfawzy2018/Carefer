@@ -31,7 +31,7 @@ class ReservationAction
             Seat::whereId($seat)->update(['status' => SeatStatusEnum::BUSY]);
         }
 
-         return $booking;
+         return $booking->id;
     }
 
     private function prePrepareData()

@@ -19,9 +19,13 @@ class ReservationService
     public function reserve($request)
     {
         try {
-            (new ReservationAction($request))->execute();
+            $reservation = (new ReservationAction($request))->execute();
 
-            return $this->respondCreated();
+            return $this->respond(
+                new ReservationResource(
+                    Reservation::find($reservation)
+                )
+            );
         } catch(\Exception $e) {
             return $this->respondBadRequest($e->getMessage());
         }

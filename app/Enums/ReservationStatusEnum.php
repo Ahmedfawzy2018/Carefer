@@ -6,4 +6,5 @@ class ReservationStatusEnum extends Enum
 {
     const RESERVED = 'reserved' ;
     const CANCELLED = 'cancelled' ;
+    const COMPLETED = 'completed' ;
 }
