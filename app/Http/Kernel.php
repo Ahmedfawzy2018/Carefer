@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'check.bus.availability' => \App\Http\Middleware\CheckBusAvailability::class,
         'check.reservation.time.limit' => \App\Http\Middleware\CheckReservationTimeLimit::class,
+        'api.logger' => \App\Http\Middleware\ApiLoggerMiddleware::class,
     ];
 }

@@ -4,6 +4,7 @@ Carefer is a Laravel project for dealing with ticket reservations.
 
 ## Installation
 
+-- For deployment Script check (deployemnt.script) file
 
 ```bash
 

@@ -15,10 +15,10 @@ use App\Http\Controllers\Api\V1\{AuthenticationController, BusController, Reserv
 */
 
 Route::group(['prefix' => 'user'], function() {
-    Route::post('login', [AuthenticationController::class, 'login'])->name('user.login');
+    Route::post('login', [AuthenticationController::class, 'login'])->name('user.login')->middleware('api.logger');
 });
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth', 'api.logger']], function() {
     Route::get('most-frequent-trip', [ReservationController::class, 'mostFrequentTrip']);
 
     Route::apiResource('reservations', ReservationController::class);
